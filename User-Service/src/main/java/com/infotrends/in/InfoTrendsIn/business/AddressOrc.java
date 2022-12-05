@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
 
 import com.infotrends.in.InfoTrendsIn.data.AddressDetails;
 import com.infotrends.in.InfoTrendsIn.data.Users;
-import com.infotrends.in.InfoTrendsIn.exceptions.AddressFieldExceptions;
-import com.infotrends.in.InfoTrendsIn.exceptions.UserExceptions;
-import com.infotrends.in.InfoTrendsIn.exceptions.config.ErrorsMappings;
+//import com.infotrends.in.InfoTrendsIn.exceptions.AddressFieldExceptions;
+//import com.infotrends.in.InfoTrendsIn.exceptions.UserExceptions;
+//import com.infotrends.in.InfoTrendsIn.exceptions.config.ErrorsMappings;
 import com.infotrends.in.InfoTrendsIn.model.AddressRequestModel;
 import com.infotrends.in.InfoTrendsIn.model.AddressResponseModel;
 import com.infotrends.in.InfoTrendsIn.model.UsersResponseModel;
@@ -40,7 +40,7 @@ public class AddressOrc {
 		AddressDetails details = new AddressDetails(data);
 		Optional<Users> user = userSvc.findById(details.getUserId());
 		if(!user.isPresent()) {
-			throw new UserExceptions.UserNotFoudException(ErrorsMappings.USER_NOT_FOUND_MESSAGE);
+			//throw new UserExceptions.UserNotFoudException(ErrorsMappings.USER_NOT_FOUND_MESSAGE);
 		}
 		details = addressSvc.save(details);
 		resp.setCode(HttpStatus.CREATED.value());

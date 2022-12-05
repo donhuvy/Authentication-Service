@@ -58,13 +58,13 @@ public class AuthenticationPrefilter extends AbstractGatewayFilterFactory<Authen
             ServerHttpRequest request = exchange.getRequest();
             log.info("**************************************************************************");
             log.info("URL is - " + request.getURI().getPath());
-            String bearerToken = request.getHeaders().getFirst(SecurityConstants.HEADER);
-            log.info("Bearer Token: "+ bearerToken);
+            //String bearerToken = request.getHeaders().getFirst(SecurityConstants.HEADER);
+            //log.info("Bearer Token: "+ bearerToken);
 
             if(isSecured.test(request)) {
                 return webClientBuilder.build().get()
                         .uri("lb://authentication-service/api/v1/validateToken")
-                        .header(SecurityConstants.HEADER, bearerToken)
+                        //.header(SecurityConstants.HEADER, bearerToken)
                         .retrieve().bodyToMono(ConnValidationResponse.class)
                         .map(response -> {
                             exchange.getRequest().mutate().header("username", response.getUsername());
